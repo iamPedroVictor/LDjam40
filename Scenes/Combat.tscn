@@ -1,5 +1,31 @@
-[gd_scene format=1]
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Scripts/Combat.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Hero.gd" type="Script" id=2]
 
 [node name="Combat" type="Node2D"]
+
+script/script = ExtResource( 1 )
+turnIndex = 0
+
+[node name="Heroes" type="Node2D" parent="."]
+
+[node name="Warrior" type="Node2D" parent="Heroes"]
+
+script/script = ExtResource( 2 )
+nameHero = ""
+levelHero = 25
+xpHero = 1000
+typeHero = "Melee"
+
+[node name="Sprite" type="Sprite" parent="Heroes/Warrior"]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemie1" type="Node2D" parent="Enemies"]
+
+[node name="Enemie2" type="Node2D" parent="Enemies"]
+
+[node name="Enemie3" type="Node2D" parent="Enemies"]
 
 

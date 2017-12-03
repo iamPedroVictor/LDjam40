@@ -3,7 +3,7 @@ extends Node2D
 export(String) var nameHero = ""
 export(int) var levelHero = 25
 export(int) var xpHero = 1000
-export(String, "Mage", "Warrior", "Ranger") var typeHero
+export(String, "Mage", "Warrior", "Marksman") var typeHero
 
 var lifePoints = 0
 var maxLifePoints = 0
@@ -46,7 +46,7 @@ func CalculateAttribute():
 		intelligence -= RandomNumber(1,3)
 		constitution -= RandomNumber(1,2)
 		maxLifePoints = 35 + getSkillMod(constitution)
-	elif(typeHero == "Ranger"):
+	elif(typeHero == "Marksman"):
 		strength -= RandomNumber(1,3)
 		dexterity -= RandomNumber(1,2)
 		intelligence -= RandomNumber(1,2)
@@ -68,7 +68,7 @@ func GenerateAttributes():
 		intelligence = RandomNumber(14,18)
 		constitution = RandomNumber(16,24)
 		maxLifePoints = 35 + getSkillMod(constitution)
-	elif(typeHero == "Ranger"):
+	elif(typeHero == "Marksman"):
 		strength = RandomNumber(16,22)
 		dexterity = RandomNumber(16,24)
 		intelligence = RandomNumber(14,20)
@@ -93,7 +93,7 @@ func Attack():
 		damage = 2 + getSkillMod(intelligence)
 	elif(typeHero == "Warrior"):
 		damage = 2 + getSkillMod(strength)
-	elif(typeHero == "Ranger"):
+	elif(typeHero == "Marksman"):
 		damage = 2 + getSkillMod(dexterity)
 	var format_string = "Dei de dano %s no inimigo %s, pela animacao"
 	var stringPrint = format_string % [damage,target]

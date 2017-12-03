@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://Scripts/Combat.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Hero.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Warrior.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/CharHud.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/Seta.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=6]
-[ext_resource path="res://Sprites/Enemie.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Mage.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Marksman.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/Enemie.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -68,8 +70,8 @@ turnIndex = 0
 [node name="Heroes" type="Node2D" parent="."]
 
 [node name="Warrior" type="Node2D" parent="Heroes" groups=[
-"Char",
 "Hero",
+"Char",
 ]]
 
 editor/display_folded = true
@@ -82,6 +84,8 @@ typeHero = "Warrior"
 
 [node name="Sprite" type="Sprite" parent="Heroes/Warrior"]
 
+transform/pos = Vector2( 3.91399, 7.94807 )
+transform/scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 3 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Warrior"]
@@ -145,11 +149,10 @@ blend_times = [  ]
 autoplay = ""
 
 [node name="Mage" type="Node2D" parent="Heroes" groups=[
-"Char",
 "Hero",
+"Char",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 47.9407, 213.99 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -159,7 +162,9 @@ typeHero = "Mage"
 
 [node name="Sprite" type="Sprite" parent="Heroes/Mage"]
 
-texture = ExtResource( 3 )
+transform/pos = Vector2( 1.45738, 2.70666 )
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Mage"]
 
@@ -221,12 +226,11 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Ranger" type="Node2D" parent="Heroes" groups=[
-"Char",
+[node name="Marksman" type="Node2D" parent="Heroes" groups=[
 "Hero",
+"Char",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 46.8326, 106.51 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -234,17 +238,19 @@ levelHero = 25
 xpHero = 1000
 typeHero = "Ranger"
 
-[node name="Sprite" type="Sprite" parent="Heroes/Ranger"]
+[node name="Sprite" type="Sprite" parent="Heroes/Marksman"]
 
-texture = ExtResource( 3 )
+transform/pos = Vector2( 2.47689, 7.27727 )
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
 
-[node name="HUDBar" type="Node2D" parent="Heroes/Ranger"]
+[node name="HUDBar" type="Node2D" parent="Heroes/Marksman"]
 
 editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
-[node name="LifeBar" type="ProgressBar" parent="Heroes/Ranger/HUDBar"]
+[node name="LifeBar" type="ProgressBar" parent="Heroes/Marksman/HUDBar"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -265,12 +271,12 @@ range/exp_edit = false
 range/rounded = false
 percent/visible = false
 
-[node name="Seta" type="Sprite" parent="Heroes/Ranger/HUDBar"]
+[node name="Seta" type="Sprite" parent="Heroes/Marksman/HUDBar"]
 
 transform/pos = Vector2( 0, -25 )
 texture = ExtResource( 5 )
 
-[node name="LvLabel" type="Label" parent="Heroes/Ranger/HUDBar"]
+[node name="LvLabel" type="Label" parent="Heroes/Marksman/HUDBar"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = true
@@ -286,7 +292,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Heroes/Ranger"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Heroes/Marksman"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
@@ -303,17 +309,17 @@ autoplay = ""
 editor/display_folded = true
 
 [node name="Enemie1" type="Node2D" parent="Enemies" groups=[
-"Enemies",
 "Char",
+"Enemies",
 ]]
 
 editor/display_folded = true
 transform/pos = Vector2( 353.604, 162.23 )
-script/script = ExtResource( 6 )
+script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie1"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie1"]
 
@@ -374,17 +380,17 @@ blend_times = [  ]
 autoplay = ""
 
 [node name="Enemie2" type="Node2D" parent="Enemies" groups=[
-"Enemies",
 "Char",
+"Enemies",
 ]]
 
 editor/display_folded = true
 transform/pos = Vector2( 434.405, 94.7689 )
-script/script = ExtResource( 6 )
+script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie2"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie2"]
 
@@ -445,17 +451,17 @@ blend_times = [  ]
 autoplay = ""
 
 [node name="Enemie3" type="Node2D" parent="Enemies" groups=[
-"Enemies",
 "Char",
+"Enemies",
 ]]
 
 editor/display_folded = true
 transform/pos = Vector2( 431.219, 217.939 )
-script/script = ExtResource( 6 )
+script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie3"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie3"]
 

@@ -67,9 +67,9 @@ func GenerateAttributes():
 func EnemyTurn():
 	var decision = RandomNumber(0,10)
 	var decisionAct
-	if(decision >= 0 && decision <= 5):
+	if(decision >= 0 && decision <= 3):
 		PassTurn()
-	if(decision > 5 && decision <= 8):
+	if(decision > 3 && decision <= 8):
 		decisionAct = AttackHero()
 	if(decision > 8):
 		UseItem()

@@ -21,6 +21,7 @@ var lastTurnPassed = false
 var enemyType
 var Hud
 var anim
+var timeNode
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -30,8 +31,7 @@ func _ready():
 	combatNode = get_tree().get_root().get_node("Combat")
 	anim = get_node("AnimationPlayer")
 	Hud = get_node("./HUDBar")
-	print(Hud.get_name())
-	print(Hud.get_parent().get_name())
+	timeNode = get_parent().get_parent().get_node("Timer")
 	pass
 
 func GenerateAttributes():
@@ -66,12 +66,21 @@ func GenerateAttributes():
 
 func EnemyTurn():
 	var decision = RandomNumber(0,10)
+	var decisionAct
 	if(decision >= 0 && decision <= 5):
 		PassTurn()
 	if(decision > 5 && decision <= 8):
-		AttackHero()
+		decisionAct = AttackHero()
 	if(decision > 8):
 		UseItem()
+
+func PanelSpeak(text):
+	var panel = get_parent().get_parent().get_node("PanelMenuEnemy")
+	if !panel.is_visible():
+		panel.show()
+	panel.get_node("LabelName").set_text(enemyName)
+	var labelText = panel.get_node("LabelText")
+	labelText.set_text(text)
 
 func UseItem():
 	PassTurn()
@@ -83,6 +92,12 @@ func PassTurn():
 func AttackHero():
 	var heros = get_tree().get_nodes_in_group("Hero")
 	var target = RandomNumber(0, heros.size())
+	PanelSpeak("Eu irei lhe atacar !")
+	timeNode.set_wait_time(1.2)
+	timeNode.set_one_shot(true)
+	timeNode.start()
+	yield(timeNode,"timeout")
+	timeNode.stop()
 	var damage = 1
 	if enemyType == Goblin:
 		damage += int(round(getSkillMod(dexterity) % 2))
@@ -90,8 +105,13 @@ func AttackHero():
 		damage += int(round(getSkillMod(strength)))
 	elif enemyType == Mage_Orc:
 		damage += int(round(getSkillMod(intelligence)))
-	print(heros[target])
+	
+	var speak = "Sinta esse lindo golpe seu %s de merda" % heros[target].get_name()
+	PanelSpeak(speak)
 	heros[target].TakeDamage(damage)
+	timeNode.set_wait_time(1.5)
+	timeNode.start()
+	yield(timeNode,"timeout")
 	PassTurn()
 
 func TakeDamage(amount):

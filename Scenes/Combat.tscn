@@ -517,6 +517,7 @@ autoplay = ""
 
 [node name="PanelMenu" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -620,6 +621,47 @@ shortcut = null
 text = "Pass"
 flat = false
 
+[node name="PanelMenuEnemy" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 279.0
+margin/right = 482.0
+margin/bottom = 360.0
+
+[node name="LabelName" type="Label" parent="PanelMenuEnemy"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 6.0
+margin/top = 3.0
+margin/right = 156.0
+margin/bottom = 26.0
+text = "Name Player"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="LabelText" type="Label" parent="PanelMenuEnemy"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 5.0
+margin/top = 21.0
+margin/right = 473.0
+margin/bottom = 74.0
+text = "Name Player"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="PanelTargetOptions" type="Panel" parent="."]
 
 editor/display_folded = true
@@ -716,6 +758,13 @@ text = "Turn: "
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 [connection signal="pressed" from="PanelMenu/GridContainerMenu/ButtonAttack" to="." method="_on_ButtonAttack_pressed"]
 

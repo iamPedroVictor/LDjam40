@@ -24,6 +24,8 @@ const labelText = "Turn:%s"
 var nameLabel
 const nameLabelText = "Turn: %s"
 
+var PanelEnemy
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -40,6 +42,7 @@ func _ready():
 	turnLabel = get_node("TurnLabel")
 	heroesAlive = heroes.size()
 	nameLabel = get_node("PanelMenu/LabelName")
+	PanelEnemy = get_node("PanelMenuEnemy")
 	Start()
 	pass
 
@@ -65,11 +68,9 @@ func ChangeTheTurnChar():
 		if ListOrder[orderIndex].get_groups().count("Hero"):
 			LoadMenu(ListOrder[orderIndex])
 			finalTextName = nameLabelText % ListOrder[orderIndex].heroName
+			nameLabel.set_text(finalTextName)
 		else:
 			LoadEnemy(ListOrder[orderIndex])
-			finalTextName = nameLabelText % ListOrder[orderIndex].heroName
-		print(finalTextName)
-		nameLabel.set_text(finalTextName)
 
 
 func LoadEnemy(_enemy):
@@ -111,6 +112,8 @@ func LoadMenu(Hero):
 	if PanelTarget.is_visible():
 		DeleteButtonsTarget()
 		TurnOffNode(PanelTarget)
+	if PanelEnemy.is_visible():
+		TurnOffNode(PanelEnemy)
 	if PanelSpells.is_visible():
 		TurnOffNode(PanelSpells)
 	if !PanelMenu.is_visible():

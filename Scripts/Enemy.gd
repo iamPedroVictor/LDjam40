@@ -23,6 +23,10 @@ var Hud
 var anim
 var timeNode
 
+const spriteFolder = "res://Sprites/%s.png"
+
+var SpriteNode
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -32,6 +36,15 @@ func _ready():
 	Hud = get_node("./HUDBar")
 	timeNode = get_parent().get_parent().get_node("Timer")
 	GenerateAttributes()
+	SpriteNode = get_node("Sprite")
+	LoadSprite()
+	pass
+
+func LoadSprite():
+	var spriteToLoad = enemyName
+	if(spriteToLoad == "Orc Xama"):
+		spriteToLoad = "OrcXama"
+	SpriteNode.set_texture(load(spriteFolder % spriteToLoad))
 	pass
 
 func GenerateAttributes():
@@ -50,7 +63,7 @@ func GenerateAttributes():
 		constitution = RandomNumber(16,22)
 		maxLifePoints = 15 + getSkillMod(constitution)
 		lifePoints = maxLifePoints
-		enemyName = "Mage Orc"
+		enemyName = "Orc Xama"
 	elif(enemyType == Goblin):
 		strength = RandomNumber(10,16)
 		dexterity = RandomNumber(18,24)

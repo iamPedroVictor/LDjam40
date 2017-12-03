@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://Scripts/Combat.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Hero.gd" type="Script" id=2]
@@ -8,8 +8,10 @@
 [ext_resource path="res://Sprites/Mage.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Marksman.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=8]
-[ext_resource path="res://Sprites/Enemie.png" type="Texture" id=9]
-[ext_resource path="res://Scripts/StatsPanel.gd" type="Script" id=10]
+[ext_resource path="res://Sprites/Orc.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Enemie.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/OrcXama.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/StatsPanel.gd" type="Script" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -75,7 +77,6 @@ turnIndex = 0
 "Char",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 116.639, 160.804 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -91,7 +92,6 @@ texture = ExtResource( 3 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Warrior"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -118,6 +118,7 @@ percent/visible = false
 
 [node name="Seta" type="Sprite" parent="Heroes/Warrior/HUDBar"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, -25 )
 texture = ExtResource( 5 )
 
@@ -154,7 +155,6 @@ autoplay = ""
 "Char",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 47.9407, 213.99 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -170,7 +170,6 @@ texture = ExtResource( 6 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Mage"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -197,6 +196,7 @@ percent/visible = false
 
 [node name="Seta" type="Sprite" parent="Heroes/Mage/HUDBar"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, -25 )
 texture = ExtResource( 5 )
 
@@ -233,7 +233,6 @@ autoplay = ""
 "Char",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 46.8326, 106.51 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -249,7 +248,6 @@ texture = ExtResource( 7 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Marksman"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -276,6 +274,7 @@ percent/visible = false
 
 [node name="Seta" type="Sprite" parent="Heroes/Marksman/HUDBar"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, -25 )
 texture = ExtResource( 5 )
 
@@ -309,24 +308,22 @@ autoplay = ""
 
 [node name="Enemies" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="Enemie1" type="Node2D" parent="Enemies" groups=[
 "Char",
 "Enemies",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 353.604, 162.23 )
 script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie1"]
 
+transform/pos = Vector2( -0.334747, 17.2508 )
+transform/scale = Vector2( 4.1, 4.6 )
 texture = ExtResource( 9 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie1"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -353,6 +350,7 @@ percent/visible = false
 
 [node name="Seta" type="Sprite" parent="Enemies/Enemie1/HUDBar"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, -25 )
 texture = ExtResource( 5 )
 
@@ -387,17 +385,16 @@ autoplay = ""
 "Enemies",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 434.405, 94.7689 )
 script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie2"]
 
-texture = ExtResource( 9 )
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 10 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie2"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -424,6 +421,7 @@ percent/visible = false
 
 [node name="Seta" type="Sprite" parent="Enemies/Enemie2/HUDBar"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, -25 )
 texture = ExtResource( 5 )
 
@@ -458,17 +456,17 @@ autoplay = ""
 "Enemies",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 431.219, 217.939 )
 script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie3"]
 
-texture = ExtResource( 9 )
+transform/pos = Vector2( -0.655579, 11.717 )
+transform/scale = Vector2( 3.9, 3.9 )
+texture = ExtResource( 11 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie3"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -495,6 +493,7 @@ percent/visible = false
 
 [node name="Seta" type="Sprite" parent="Enemies/Enemie3/HUDBar"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, -25 )
 texture = ExtResource( 5 )
 
@@ -764,7 +763,7 @@ margin/left = 300.0
 margin/top = 279.0
 margin/right = 480.0
 margin/bottom = 360.0
-script/script = ExtResource( 10 )
+script/script = ExtResource( 12 )
 
 [node name="LabelSpells" type="Label" parent="PanelStats"]
 

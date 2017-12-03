@@ -2,10 +2,6 @@ extends Node
 
 var Heros = {}
 var currentScene = null
-var ScenesPath = {
-	'GameOver':'res://Scenes/GameOver.tscn',
-	'Combat':'res://Scenes/Combat.tscn'
-}
 
 var isHeroesAlready = false
 

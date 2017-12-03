@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "LDJAM_MainMenu"
+length = 2.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("LabelLDJAM:rect/size")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1, 2 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 101, 29 ), Vector2( 80, 20 ), Vector2( 101, 29 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LabelLDJAM:rect/rotation")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1, 2 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -19.4931, -56.1482, -19.4931 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LabelLDJAM:rect/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 1, 2 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 292, 74 ), Vector2( 296, 96 ), Vector2( 292, 74 ) ]
+}
+
+[node name="Menu" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="MenuPanel" type="Node" parent="."]
+
+[node name="Logo" type="Sprite" parent="MenuPanel"]
+
+transform/pos = Vector2( 215.846, 44.7981 )
+
+[node name="LabelTitle" type="Label" parent="MenuPanel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 149.0
+margin/top = 42.0
+margin/right = 298.0
+margin/bottom = 75.0
+text = "RRPG"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="LabelLDJAM" type="Label" parent="MenuPanel"]
+
+rect/rotation = -55.0536
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 295.881
+margin/top = 95.343
+margin/right = 375.881
+margin/bottom = 115.343
+text = "LDJAM #40"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/LDJAM_MainMenu = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "LDJAM_MainMenu"
+
+[node name="ButtonPlay" type="Button" parent="MenuPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 181.0
+margin/top = 125.0
+margin/right = 268.0
+margin/bottom = 160.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Play"
+flat = false
+
+[node name="ButtonCredits" type="Button" parent="MenuPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 194.0
+margin/right = 267.0
+margin/bottom = 229.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Credits"
+flat = false
+
+[node name="CreditPanel" type="Node" parent="."]
+
+[connection signal="pressed" from="MenuPanel/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+
+[connection signal="pressed" from="MenuPanel/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
+
+

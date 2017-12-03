@@ -12,12 +12,45 @@ var dexterity = 0
 var intelligence = 0
 var constitution = 0
 
-
+var anim
+var Hud
+var target
+var combatNode
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	pass
+	if Global.isHeroesAlready:
+		print("Não preciso gerar mais um heroi")
+	else:
+		GenerateAttributes()
+	anim = get_node("AnimationPlayer")
+	anim.play("Idle")
+	combatNode = get_tree().get_root().get_node("Combat")
+	Hud = get_node("HUDBar")
+	Hud.SetLifeBar(0, maxLifePoints)
+	Hud.SetLv(levelHero)
+
+func CalculateAttribute():
+	if(typeHero == "Mage"):
+		strength -= RandomNumber(1,2)
+		dexterity -= RandomNumber(1,3)
+		intelligence -= RandomNumber(1,2)
+		constitution -= RandomNumber(1,3)
+		maxLifePoints = 20 + getSkillMod(constitution)
+	elif(typeHero == "Warrior"):
+		strength -= RandomNumber(1,2)
+		dexterity -= RandomNumber(1,3)
+		intelligence -= RandomNumber(1,3)
+		constitution -= RandomNumber(1,2)
+		maxLifePoints = 35 + getSkillMod(constitution)
+	elif(typeHero == "Ranger"):
+		strength -= RandomNumber(1,3)
+		dexterity -= RandomNumber(1,2)
+		intelligence -= RandomNumber(1,2)
+		constitution -= RandomNumber(1,3)
+		maxLifePoints = 20 + getSkillMod(constitution)
+
 
 func GenerateAttributes():
 	if(typeHero == "Mage"):
@@ -25,30 +58,66 @@ func GenerateAttributes():
 		dexterity = RandomNumber(16,22)
 		intelligence = RandomNumber(16,24)
 		constitution = RandomNumber(14,18)
-		maxLifePoints = 9 + getSkillMod(constitution)
+		maxLifePoints = 20 + getSkillMod(constitution)
 	elif(typeHero == "Warrior"):
 		strength = RandomNumber(16,22)
 		dexterity = RandomNumber(14,20)
 		intelligence = RandomNumber(14,18)
 		constitution = RandomNumber(16,24)
-		maxLifePoints = 9 + getSkillMod(constitution)
+		maxLifePoints = 35 + getSkillMod(constitution)
 	elif(typeHero == "Ranger"):
 		strength = RandomNumber(16,22)
 		dexterity = RandomNumber(16,24)
 		intelligence = RandomNumber(14,20)
 		constitution = RandomNumber(14,18)
-		maxLifePoints = 9 + getSkillMod(constitution)
+		maxLifePoints = 20 + getSkillMod(constitution)
+	lifePoints = maxLifePoints
 
 func LoseExp(amount):
 	xpHero -= amount
 	if xpHero <= 0:
-		levelHero-=1
 		OnLoseLevel()
 
-func Attack(target):
-	pass
+func AttackAction(_target):
+	if(anim == null):
+		return
+	anim.play("Attack")
+	target = _target
+
+func Attack():
+	var damage = 1
+	if(typeHero == "Mage"):
+		damage = 2 + getSkillMod(intelligence)
+	elif(typeHero == "Warrior"):
+		damage = 2 + getSkillMod(strength)
+	elif(typeHero == "Ranger"):
+		damage = 2 + getSkillMod(dexterity)
+	var format_string = "Dei de dano %s no inimigo %s, pela animacao"
+	var stringPrint = format_string % [damage,target]
+	print(stringPrint)
+	target.TakeDamage(damage)
+	combatNode.ChangeTheTurnChar()
+
+func TakeDamage(amount):
+	lifePoints -= amount
+	var format_string = "Levei de dano %s do inimigo, agora tenho %s de vida"
+	var stringPrint = format_string % [amount,lifePoints]
+	print(stringPrint)
+	Hud.ChangeLifeBar(lifePoints)
+	if(lifePoints <= 0):
+		Die()
+
+func Die():
+	print("morri")
+	combatNode.HeroDie(self)
+	self.hide()
+	
 
 func OnLoseLevel():
+	levelHero-=1
+	xpHero = 1000
+	Hud.SetLv(levelHero)
+	Hud.SetLifeBar(0, maxLifePoints)
 	pass
 
 func RandomNumber(_min, _max):

@@ -27,11 +27,11 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	enemyType = RandomNumber(1,3)
-	GenerateAttributes()
 	combatNode = get_tree().get_root().get_node("Combat")
 	anim = get_node("AnimationPlayer")
 	Hud = get_node("./HUDBar")
 	timeNode = get_parent().get_parent().get_node("Timer")
+	GenerateAttributes()
 	pass
 
 func GenerateAttributes():
@@ -45,9 +45,9 @@ func GenerateAttributes():
 		enemyName = "Orc"
 	elif(enemyType == Mage_Orc):
 		strength = RandomNumber(9,14)
-		dexterity = RandomNumber(12,16)
+		dexterity = RandomNumber(10,16)
 		intelligence = RandomNumber(18,24)
-		constitution = RandomNumber(10,16)
+		constitution = RandomNumber(16,22)
 		maxLifePoints = 15 + getSkillMod(constitution)
 		lifePoints = maxLifePoints
 		enemyName = "Mage Orc"
@@ -55,7 +55,7 @@ func GenerateAttributes():
 		strength = RandomNumber(10,16)
 		dexterity = RandomNumber(18,24)
 		intelligence = RandomNumber(8,12)
-		constitution = RandomNumber(8,16)
+		constitution = RandomNumber(16,22)
 		maxLifePoints = 16 + getSkillMod(constitution)
 		lifePoints = maxLifePoints
 		enemyName = "Goblin"
@@ -115,10 +115,11 @@ func AttackHero():
 	PassTurn()
 
 func TakeDamage(amount):
-	lifePoints -= amount
-	var format_string = "Levei de dano %s do inimigo, agora tenho %s de vida"
-	var stringPrint = format_string % [amount,lifePoints]
-	print(stringPrint)
+	var finalDamage = int(round(amount - (getSkillMod(constitution) * 0.8)))
+	lifePoints -= finalDamage
+	print("Levei de dano final %s de %s" % [finalDamage,amount])
+	print("Tenho de vida agora: %s" % lifePoints)
+	print("-------------")
 	Hud.ChangeLifeBar(lifePoints)
 	if(lifePoints <= 0):
 		Die()

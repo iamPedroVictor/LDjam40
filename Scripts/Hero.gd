@@ -95,18 +95,11 @@ func Attack():
 		damage = 2 + getSkillMod(strength)
 	elif(typeHero == "Marksman"):
 		damage = 2 + getSkillMod(dexterity)
-	var format_string = "Dei de dano %s no inimigo %s, pela animacao"
-	var stringPrint = format_string % [damage,target]
-	print(stringPrint)
-	var finalDamage = int(round(damage % 2))
-	target.TakeDamage(finalDamage)
+	target.TakeDamage(damage)
 	combatNode.ChangeTheTurnChar()
 
 func TakeDamage(amount):
 	lifePoints -= amount
-	var format_string = "Levei de dano %s do inimigo, agora tenho %s de vida"
-	var stringPrint = format_string % [amount,lifePoints]
-	print(stringPrint)
 	Hud.ChangeLifeBar(lifePoints)
 	if(lifePoints <= 0):
 		Die()

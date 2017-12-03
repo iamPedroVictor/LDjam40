@@ -9,7 +9,7 @@
 [ext_resource path="res://Sprites/Marksman.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/Orc.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Enemie.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Goblin.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/OrcXama.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/StatsPanel.gd" type="Script" id=12]
 
@@ -390,6 +390,7 @@ script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie2"]
 
+transform/pos = Vector2( -5.38867, 7.7836 )
 transform/scale = Vector2( 4, 4 )
 texture = ExtResource( 10 )
 

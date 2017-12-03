@@ -25,6 +25,7 @@ var nameLabel
 const nameLabelText = "Turn: %s"
 
 var PanelEnemy
+var PanelStats
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -43,6 +44,7 @@ func _ready():
 	heroesAlive = heroes.size()
 	nameLabel = get_node("PanelMenu/LabelName")
 	PanelEnemy = get_node("PanelMenuEnemy")
+	PanelStats = get_node("PanelStats")
 	Start()
 	pass
 
@@ -65,6 +67,7 @@ func ChangeTheTurnChar():
 	if orderIndex >= ListOrder.size():
 		PassTurn()
 	else:
+		PanelStats.Set_Stats(ListOrder[orderIndex])
 		if ListOrder[orderIndex].get_groups().count("Hero"):
 			LoadMenu(ListOrder[orderIndex])
 			finalTextName = nameLabelText % ListOrder[orderIndex].heroName
@@ -143,7 +146,6 @@ func LoadAttackMenu(Hero):
 	
 func _on_ButtonPass_pressed():
 	ChangeTheTurnChar()
-	print("Passei meu turno")
 
 func DeleteButtonsTarget():
 	var gridTarget = get_node("PanelTargetOptions/GridContainer")

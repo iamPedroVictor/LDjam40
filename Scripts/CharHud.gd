@@ -26,5 +26,8 @@ func ChangeLifeBar(value):
 	LifeBar.set_value(value)
 
 func SetLifeBar(_min, _max):
+#	print("Min %s Max %s" % [_min,_max])
 	LifeBar.set_min(_min)
 	LifeBar.set_max(_max)
+#	print("Lifebar min %s max %s" % [LifeBar.get_min(), LifeBar.get_max()])
+#	print("------------")

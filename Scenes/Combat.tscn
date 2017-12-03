@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://Scripts/Combat.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Hero.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Sprites/Marksman.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/Enemie.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/StatsPanel.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -153,6 +154,7 @@ autoplay = ""
 "Char",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 47.9407, 213.99 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -231,12 +233,13 @@ autoplay = ""
 "Char",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 46.8326, 106.51 )
 script/script = ExtResource( 2 )
 nameHero = ""
 levelHero = 25
 xpHero = 1000
-typeHero = "Ranger"
+typeHero = "Marksman"
 
 [node name="Sprite" type="Sprite" parent="Heroes/Marksman"]
 
@@ -530,7 +533,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 279.0
-margin/right = 482.0
+margin/right = 300.0
 margin/bottom = 360.0
 
 [node name="LabelName" type="Label" parent="PanelMenu"]
@@ -557,7 +560,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 9.0
 margin/top = 21.0
-margin/right = 383.0
+margin/right = 313.0
 margin/bottom = 75.0
 custom_constants/vseparation = 5
 custom_constants/hseparation = 100
@@ -629,13 +632,14 @@ flat = false
 
 [node name="PanelMenuEnemy" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 279.0
-margin/right = 482.0
+margin/right = 300.0
 margin/bottom = 360.0
 
 [node name="LabelName" type="Label" parent="PanelMenuEnemy"]
@@ -661,7 +665,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 5.0
 margin/top = 21.0
-margin/right = 473.0
+margin/right = 308.0
 margin/bottom = 74.0
 text = "Name Player"
 percent_visible = 1.0
@@ -677,7 +681,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 279.0
-margin/right = 482.0
+margin/right = 300.0
 margin/bottom = 360.0
 
 [node name="LabelAttack" type="Label" parent="PanelTargetOptions"]
@@ -703,7 +707,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 24.0
 margin/top = 21.0
-margin/right = 348.0
+margin/right = 311.0
 margin/bottom = 77.0
 custom_constants/vseparation = 3
 custom_constants/hseparation = 25
@@ -718,7 +722,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 279.0
-margin/right = 482.0
+margin/right = 300.0
 margin/bottom = 360.0
 
 [node name="LabelSpells" type="Label" parent="PanelSpells"]
@@ -744,11 +748,128 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 24.0
 margin/top = 21.0
-margin/right = 348.0
+margin/right = 306.0
 margin/bottom = 77.0
 custom_constants/vseparation = 3
 custom_constants/hseparation = 25
 columns = 2
+
+[node name="PanelStats" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 300.0
+margin/top = 279.0
+margin/right = 480.0
+margin/bottom = 360.0
+script/script = ExtResource( 10 )
+
+[node name="LabelSpells" type="Label" parent="PanelStats"]
+
+rect/scale = Vector2( 0.8, 0.8 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 6.0
+margin/top = 3.0
+margin/right = 41.0
+margin/bottom = 22.0
+text = "Stats"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="GridContainer" type="GridContainer" parent="PanelStats"]
+
+rect/scale = Vector2( 0.8, 0.9 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 17.0
+margin/right = 221.0
+margin/bottom = 81.0
+custom_constants/vseparation = 6
+columns = 2
+
+[node name="LifeLabel" type="Label" parent="PanelStats/GridContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 102.0
+margin/bottom = 14.0
+text = "Life: 25/25"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="StrengthLabel" type="Label" parent="PanelStats/GridContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 106.0
+margin/top = 0.0
+margin/right = 206.0
+margin/bottom = 14.0
+text = "Strength: 15"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DexterityLabel" type="Label" parent="PanelStats/GridContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 102.0
+margin/bottom = 34.0
+text = "Dexterity: 15"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="IntelligenceLabel" type="Label" parent="PanelStats/GridContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 106.0
+margin/top = 20.0
+margin/right = 206.0
+margin/bottom = 34.0
+text = "Intelligence: 18"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ConstitutionLabel" type="Label" parent="PanelStats/GridContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 102.0
+margin/bottom = 54.0
+text = "Constitution: 20"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="TurnLabel" type="Label" parent="."]
 

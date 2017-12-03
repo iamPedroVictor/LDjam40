@@ -19,7 +19,7 @@ var combatNode
 var lastTurnPassed = false
 
 var enemyType
-
+var Hud
 var anim
 
 func _ready():
@@ -29,11 +29,13 @@ func _ready():
 	GenerateAttributes()
 	combatNode = get_tree().get_root().get_node("Combat")
 	anim = get_node("AnimationPlayer")
+	Hud = get_node("./HUDBar")
+	print(Hud.get_name())
+	print(Hud.get_parent().get_name())
 	pass
 
 func GenerateAttributes():
 	if(enemyType == Orc):
-		print("Sou um Orc")
 		strength = RandomNumber(18,22)
 		dexterity = RandomNumber(10,16)
 		intelligence = RandomNumber(4,15)
@@ -42,7 +44,6 @@ func GenerateAttributes():
 		lifePoints = maxLifePoints
 		enemyName = "Orc"
 	elif(enemyType == Mage_Orc):
-		print("Sou um Mage Orc")
 		strength = RandomNumber(9,14)
 		dexterity = RandomNumber(12,16)
 		intelligence = RandomNumber(18,24)
@@ -51,7 +52,6 @@ func GenerateAttributes():
 		lifePoints = maxLifePoints
 		enemyName = "Mage Orc"
 	elif(enemyType == Goblin):
-		print("Sou um goblin")
 		strength = RandomNumber(10,16)
 		dexterity = RandomNumber(18,24)
 		intelligence = RandomNumber(8,12)
@@ -59,7 +59,10 @@ func GenerateAttributes():
 		maxLifePoints = 16 + getSkillMod(constitution)
 		lifePoints = maxLifePoints
 		enemyName = "Goblin"
-	
+	if Hud != null:
+		Hud.SetLv(enemyLevel)
+		Hud.SetLifeBar(0,maxLifePoints)
+		Hud.ChangeLifeBar(lifePoints)
 
 func EnemyTurn():
 	var decision = RandomNumber(0,10)
@@ -80,13 +83,13 @@ func PassTurn():
 func AttackHero():
 	var heros = get_tree().get_nodes_in_group("Hero")
 	var target = RandomNumber(0, heros.size())
-	var damage = 2
+	var damage = 1
 	if enemyType == Goblin:
-		damage += getSkillMod(dexterity)
+		damage += int(round(getSkillMod(dexterity) % 2))
 	elif enemyType == Orc:
-		damage += getSkillMod(strength)
+		damage += int(round(getSkillMod(strength)))
 	elif enemyType == Mage_Orc:
-		damage += getSkillMod(intelligence)
+		damage += int(round(getSkillMod(intelligence)))
 	print(heros[target])
 	heros[target].TakeDamage(damage)
 	PassTurn()
@@ -96,6 +99,7 @@ func TakeDamage(amount):
 	var format_string = "Levei de dano %s do inimigo, agora tenho %s de vida"
 	var stringPrint = format_string % [amount,lifePoints]
 	print(stringPrint)
+	Hud.ChangeLifeBar(lifePoints)
 	if(lifePoints <= 0):
 		Die()
 

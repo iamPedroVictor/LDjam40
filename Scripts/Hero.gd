@@ -12,6 +12,8 @@ var dexterity = 0
 var intelligence = 0
 var constitution = 0
 
+var heroName = ""
+
 var anim
 var Hud
 var target
@@ -53,6 +55,7 @@ func CalculateAttribute():
 
 
 func GenerateAttributes():
+	heroName = typeHero
 	if(typeHero == "Mage"):
 		strength = RandomNumber(14,20)
 		dexterity = RandomNumber(16,22)
@@ -95,7 +98,8 @@ func Attack():
 	var format_string = "Dei de dano %s no inimigo %s, pela animacao"
 	var stringPrint = format_string % [damage,target]
 	print(stringPrint)
-	target.TakeDamage(damage)
+	var finalDamage = int(round(damage % 2))
+	target.TakeDamage(finalDamage)
 	combatNode.ChangeTheTurnChar()
 
 func TakeDamage(amount):
@@ -109,7 +113,7 @@ func TakeDamage(amount):
 
 func Die():
 	print("morri")
-	combatNode.HeroDie(self)
+	combatNode.HeroDie()
 	self.hide()
 	
 

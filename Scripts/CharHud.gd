@@ -13,9 +13,9 @@ const labelLvText = "Lv%s"
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	LifeBar = get_node("LifeBar")
-	Seta = get_node("Seta")
-	lvLabel = get_node("LvLabel")
+	LifeBar = get_node("./LifeBar")
+	Seta = get_node("./Seta")
+	lvLabel = get_node("./LvLabel")
 	pass
 
 func SetLv(value):

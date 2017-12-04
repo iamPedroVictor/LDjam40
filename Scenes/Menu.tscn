@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Font/PressStart2P.fnt" type="BitmapFont" id=2]
 
 [sub_resource type="Animation" id=1]
 
@@ -43,7 +44,16 @@ tracks/2/keys = {
 
 script/script = ExtResource( 1 )
 
-[node name="MenuPanel" type="Node" parent="."]
+[node name="MenuPanel" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
 
 [node name="Logo" type="Sprite" parent="MenuPanel"]
 
@@ -55,11 +65,12 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 149.0
-margin/top = 42.0
-margin/right = 298.0
-margin/bottom = 75.0
-text = "RRPG"
+margin/left = 103.0
+margin/top = 45.0
+margin/right = 393.0
+margin/bottom = 78.0
+custom_fonts/font = ExtResource( 2 )
+text = "One step into the boss's room"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -75,8 +86,9 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 295.881
 margin/top = 95.343
-margin/right = 375.881
+margin/right = 385.881
 margin/bottom = 115.343
+custom_fonts/font = ExtResource( 2 )
 text = "LDJAM #40"
 align = 1
 valign = 1
@@ -105,6 +117,7 @@ margin/left = 181.0
 margin/top = 125.0
 margin/right = 268.0
 margin/bottom = 160.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -121,16 +134,74 @@ margin/left = 180.0
 margin/top = 194.0
 margin/right = 267.0
 margin/bottom = 229.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Credits"
 flat = false
 
-[node name="CreditPanel" type="Node" parent="."]
+[node name="CreditPanel" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Label" type="Label" parent="CreditPanel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 84.0
+margin/top = 86.0
+margin/right = 424.0
+margin/bottom = 263.0
+custom_fonts/font = ExtResource( 2 )
+text = "Game by Pedro Victor
+@iampedrovictor
+
+Made with
+	Godot Engine (2.1.4)
+	Aseprite (1.2.4)
+
+Font \"Press Start 2P\" by codeman38
+
+
+Ludum Dare #40 
+Programmer art version"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button" type="Button" parent="CreditPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 201.0
+margin/top = 306.0
+margin/right = 269.0
+margin/bottom = 329.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Back"
+flat = false
 
 [connection signal="pressed" from="MenuPanel/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 
 [connection signal="pressed" from="MenuPanel/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
+
+[connection signal="pressed" from="CreditPanel/Button" to="." method="_on_Button_pressed"]
 
 

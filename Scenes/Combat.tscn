@@ -1,17 +1,18 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://Scripts/Combat.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Hero.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Warrior.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/CharHud.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/Seta.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Mage.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Marksman.png" type="Texture" id=7]
-[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=8]
-[ext_resource path="res://Sprites/Orc.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Goblin.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/OrcXama.png" type="Texture" id=11]
-[ext_resource path="res://Scripts/StatsPanel.gd" type="Script" id=12]
+[ext_resource path="res://Font/PressStart2P.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://Sprites/Mage.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Marksman.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/Orc.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Goblin.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/OrcXama.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/StatsPanel.gd" type="Script" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -72,11 +73,14 @@ turnIndex = 0
 
 [node name="Heroes" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="Warrior" type="Node2D" parent="Heroes" groups=[
 "Hero",
 "Char",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 116.639, 160.804 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -92,6 +96,7 @@ texture = ExtResource( 3 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Warrior"]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -101,9 +106,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -28.0
+margin/left = -22.0
 margin/top = -19.0
-margin/right = 27.0
+margin/right = 33.0
 margin/bottom = -12.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -133,6 +138,7 @@ margin/left = -43.0
 margin/top = -19.0
 margin/right = -13.0
 margin/bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
 text = "lv20"
 percent_visible = 1.0
 lines_skipped = 0
@@ -155,6 +161,7 @@ autoplay = ""
 "Char",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 47.9407, 213.99 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -166,10 +173,11 @@ typeHero = "Mage"
 
 transform/pos = Vector2( 1.45738, 2.70666 )
 transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Mage"]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -179,9 +187,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -28.0
+margin/left = -22.0
 margin/top = -19.0
-margin/right = 27.0
+margin/right = 33.0
 margin/bottom = -12.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -211,6 +219,7 @@ margin/left = -43.0
 margin/top = -19.0
 margin/right = -13.0
 margin/bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
 text = "lv20"
 percent_visible = 1.0
 lines_skipped = 0
@@ -233,6 +242,7 @@ autoplay = ""
 "Char",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 46.8326, 106.51 )
 script/script = ExtResource( 2 )
 nameHero = ""
@@ -244,10 +254,11 @@ typeHero = "Marksman"
 
 transform/pos = Vector2( 2.47689, 7.27727 )
 transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="HUDBar" type="Node2D" parent="Heroes/Marksman"]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -257,9 +268,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -28.0
+margin/left = -22.0
 margin/top = -19.0
-margin/right = 27.0
+margin/right = 33.0
 margin/bottom = -12.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -289,6 +300,7 @@ margin/left = -43.0
 margin/top = -19.0
 margin/right = -13.0
 margin/bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
 text = "lv20"
 percent_visible = 1.0
 lines_skipped = 0
@@ -313,17 +325,19 @@ autoplay = ""
 "Enemies",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 353.604, 162.23 )
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie1"]
 
 transform/pos = Vector2( -0.334747, 17.2508 )
 transform/scale = Vector2( 4.1, 4.6 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie1"]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, -10 )
 script/script = ExtResource( 4 )
 
@@ -333,9 +347,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -28.0
+margin/left = -22.0
 margin/top = -19.0
-margin/right = 27.0
+margin/right = 33.0
 margin/bottom = -12.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -365,6 +379,7 @@ margin/left = -43.0
 margin/top = -19.0
 margin/right = -13.0
 margin/bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
 text = "lv20"
 percent_visible = 1.0
 lines_skipped = 0
@@ -385,14 +400,15 @@ autoplay = ""
 "Enemies",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 434.405, 94.7689 )
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie2"]
 
 transform/pos = Vector2( -5.38867, 7.7836 )
 transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie2"]
 
@@ -405,9 +421,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -28.0
+margin/left = -22.0
 margin/top = -19.0
-margin/right = 27.0
+margin/right = 33.0
 margin/bottom = -12.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -437,6 +453,7 @@ margin/left = -43.0
 margin/top = -19.0
 margin/right = -13.0
 margin/bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
 text = "lv20"
 percent_visible = 1.0
 lines_skipped = 0
@@ -458,13 +475,13 @@ autoplay = ""
 ]]
 
 transform/pos = Vector2( 431.219, 217.939 )
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/Enemie3"]
 
 transform/pos = Vector2( -0.655579, 11.717 )
 transform/scale = Vector2( 3.9, 3.9 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="HUDBar" type="Node2D" parent="Enemies/Enemie3"]
 
@@ -477,9 +494,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -28.0
+margin/left = -21.0
 margin/top = -19.0
-margin/right = 27.0
+margin/right = 34.0
 margin/bottom = -12.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -509,6 +526,7 @@ margin/left = -43.0
 margin/top = -19.0
 margin/right = -13.0
 margin/bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
 text = "lv20"
 percent_visible = 1.0
 lines_skipped = 0
@@ -527,6 +545,7 @@ autoplay = ""
 [node name="PanelMenu" type="Panel" parent="."]
 
 editor/display_folded = true
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -546,6 +565,7 @@ margin/left = 6.0
 margin/top = 3.0
 margin/right = 156.0
 margin/bottom = 26.0
+custom_fonts/font = ExtResource( 6 )
 text = "Name Player"
 percent_visible = 1.0
 lines_skipped = 0
@@ -574,8 +594,9 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 52.0
-margin/bottom = 20.0
+margin/right = 72.0
+margin/bottom = 18.0
+custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -584,6 +605,7 @@ flat = false
 
 [node name="ButtonSpells" type="Button" parent="PanelMenu/GridContainerMenu"]
 
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -600,14 +622,15 @@ flat = false
 
 [node name="ButtonItens" type="Button" parent="PanelMenu/GridContainerMenu"]
 
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 25.0
-margin/right = 52.0
-margin/bottom = 45.0
+margin/left = 152.0
+margin/top = 0.0
+margin/right = 197.0
+margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -620,10 +643,11 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 152.0
-margin/top = 25.0
-margin/right = 202.0
-margin/bottom = 45.0
+margin/left = 172.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 18.0
+custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -632,7 +656,6 @@ flat = false
 
 [node name="PanelMenuEnemy" type="Panel" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -652,6 +675,7 @@ margin/left = 6.0
 margin/top = 3.0
 margin/right = 156.0
 margin/bottom = 26.0
+custom_fonts/font = ExtResource( 6 )
 text = "Name Player"
 percent_visible = 1.0
 lines_skipped = 0
@@ -665,9 +689,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 5.0
 margin/top = 21.0
-margin/right = 308.0
+margin/right = 247.0
 margin/bottom = 74.0
-text = "Name Player"
+custom_fonts/font = ExtResource( 6 )
+text = "You can not go by here"
+autowrap = true
+clip_text = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -675,6 +702,7 @@ max_lines_visible = -1
 [node name="PanelTargetOptions" type="Panel" parent="."]
 
 editor/display_folded = true
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -694,6 +722,7 @@ margin/left = 6.0
 margin/top = 3.0
 margin/right = 105.0
 margin/bottom = 22.0
+custom_fonts/font = ExtResource( 6 )
 text = "Select target"
 percent_visible = 1.0
 lines_skipped = 0
@@ -716,6 +745,7 @@ columns = 2
 [node name="PanelSpells" type="Panel" parent="."]
 
 editor/display_folded = true
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -748,7 +778,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 24.0
 margin/top = 21.0
-margin/right = 306.0
+margin/right = 248.0
 margin/bottom = 77.0
 custom_constants/vseparation = 3
 custom_constants/hseparation = 25
@@ -756,15 +786,16 @@ columns = 2
 
 [node name="PanelStats" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 300.0
+margin/left = 245.0
 margin/top = 279.0
 margin/right = 480.0
 margin/bottom = 360.0
-script/script = ExtResource( 12 )
+script/script = ExtResource( 13 )
 
 [node name="LabelSpells" type="Label" parent="PanelStats"]
 
@@ -775,97 +806,94 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 6.0
 margin/top = 3.0
-margin/right = 41.0
+margin/right = 56.0
 margin/bottom = 22.0
+custom_fonts/font = ExtResource( 6 )
 text = "Stats"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="GridContainer" type="GridContainer" parent="PanelStats"]
+[node name="LifeLabel" type="Label" parent="PanelStats"]
 
-rect/scale = Vector2( 0.8, 0.9 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 17.0
-margin/right = 221.0
-margin/bottom = 81.0
-custom_constants/vseparation = 6
-columns = 2
-
-[node name="LifeLabel" type="Label" parent="PanelStats/GridContainer"]
-
+rect/scale = Vector2( 0.8, 0.8 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 102.0
-margin/bottom = 14.0
+margin/left = 140.0
+margin/top = 3.0
+margin/right = 300.0
+margin/bottom = 15.0
+custom_fonts/font = ExtResource( 6 )
 text = "Life: 25/25"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="StrengthLabel" type="Label" parent="PanelStats/GridContainer"]
+[node name="StrengthLabel" type="Label" parent="PanelStats"]
 
+rect/scale = Vector2( 0.8, 0.8 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 106.0
-margin/top = 0.0
-margin/right = 206.0
-margin/bottom = 14.0
+margin/left = 5.0
+margin/top = 15.0
+margin/right = 165.0
+margin/bottom = 27.0
+custom_fonts/font = ExtResource( 6 )
 text = "Strength: 15"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="DexterityLabel" type="Label" parent="PanelStats/GridContainer"]
+[node name="DexterityLabel" type="Label" parent="PanelStats"]
 
+rect/scale = Vector2( 0.8, 0.8 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 20.0
-margin/right = 102.0
-margin/bottom = 34.0
+margin/left = 5.0
+margin/top = 29.0
+margin/right = 165.0
+margin/bottom = 41.0
+custom_fonts/font = ExtResource( 6 )
 text = "Dexterity: 15"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="IntelligenceLabel" type="Label" parent="PanelStats/GridContainer"]
+[node name="IntelligenceLabel" type="Label" parent="PanelStats"]
 
+rect/scale = Vector2( 0.8, 0.8 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 106.0
-margin/top = 20.0
-margin/right = 206.0
-margin/bottom = 34.0
+margin/left = 5.0
+margin/top = 42.0
+margin/right = 165.0
+margin/bottom = 54.0
+custom_fonts/font = ExtResource( 6 )
 text = "Intelligence: 18"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ConstitutionLabel" type="Label" parent="PanelStats/GridContainer"]
+[node name="ConstitutionLabel" type="Label" parent="PanelStats"]
 
+rect/scale = Vector2( 0.8, 0.8 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 40.0
-margin/right = 102.0
-margin/bottom = 54.0
+margin/left = 5.0
+margin/top = 54.0
+margin/right = 165.0
+margin/bottom = 66.0
+custom_fonts/font = ExtResource( 6 )
 text = "Constitution: 20"
 percent_visible = 1.0
 lines_skipped = 0
@@ -881,17 +909,59 @@ margin/left = 180.0
 margin/top = 7.0
 margin/right = 247.0
 margin/bottom = 22.0
+custom_fonts/font = ExtResource( 6 )
 text = "Turn: "
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer1" type="Timer" parent="."]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
+
+[node name="Timer2" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="PopupDialog" type="PopupDialog" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 125.0
+margin/top = 99.0
+margin/right = 351.0
+margin/bottom = 210.0
+popup/exclusive = false
+
+[node name="Label" type="Label" parent="PopupDialog"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 4.0
+margin/right = 216.0
+margin/bottom = 104.0
+custom_fonts/font = ExtResource( 6 )
+text = "Careful
+We will lose level as we lose time here."
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="pressed" from="PanelMenu/GridContainerMenu/ButtonAttack" to="." method="_on_ButtonAttack_pressed"]
 

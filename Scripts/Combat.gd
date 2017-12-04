@@ -9,7 +9,7 @@ var heroesAlive
 var Warrior
 var Mage
 var Ranger
-
+var enemiesAlive
 var enemies = []
 var heroes = []
 
@@ -27,10 +27,14 @@ const nameLabelText = "Turn: %s"
 var PanelEnemy
 var PanelStats
 
+var isPopUpOpened = false
+var timeNode
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	PanelSpells = get_node("PanelSpells")
+	timeNode = get_node("Timer2")
 	PanelSpells.hide()
 	PanelTarget = get_node("PanelTargetOptions")
 	PanelTarget.hide()
@@ -45,8 +49,17 @@ func _ready():
 	nameLabel = get_node("PanelMenu/LabelName")
 	PanelEnemy = get_node("PanelMenuEnemy")
 	PanelStats = get_node("PanelStats")
+	enemiesAlive = enemies.size()
+	print("Heroes alive: %s" % heroesAlive)
+	print("Enemies alive: %s" % enemiesAlive)
+	print("----")
 	Start()
 	pass
+
+func DisableMenu():
+	PanelMenu.hide()
+	DeleteButtonsTarget()
+	PanelTarget.hide()
 
 func Start():
 	SetTurnLabel(turnIndex)
@@ -107,9 +120,20 @@ func PassTurn():
 	SetTurnLabel(turnIndex)
 	for h in heroes:
 		h.LoseExp(200)
+	if(isPopUpOpened == false):
+		get_node("PopupDialog").popup()
+		HidePopUp()
+		isPopUpOpened = true
 	ChangeTheTurnChar()
 	pass
-	
+
+func HidePopUp():
+	timeNode.set_wait_time(2)
+	timeNode.set_one_shot(true)
+	timeNode.start()
+	yield(timeNode,"timeout")
+	get_node("PopupDialog").hide()
+
 func LoadMenu(Hero):
 	TurnOffNode(get_node("PanelMenu/GridContainerMenu/ButtonItens"))
 	if PanelTarget.is_visible():
@@ -159,8 +183,27 @@ func _on_ButtonAttack_pressed():
 
 func HeroDie():
 	heroesAlive-=1
+	print("Heroes alive: %s" % heroesAlive)
+	print("Enemies alive: %s" % enemiesAlive)
+	print("----")
 	if heroesAlive <= 0:
 		GameOver()
 
+func EnemyDie():
+	enemiesAlive -= 1
+	print("Heroes alive: %s" % heroesAlive)
+	print("Enemies alive: %s" % enemiesAlive)
+	print("----")
+	if enemiesAlive <= 0:
+		WinGame()
+
+func WinGame():
+	get_node("Timer1").set_wait_time(0.5)
+	get_node("Timer1").set_one_shot(true)
+	get_node("Timer1").start()
+	yield(get_node("Timer1"),"timeout")
+	get_node("Timer1").stop()
+	Global.Scene_Load("res://Scenes/Win.tscn")
+
 func GameOver():
-	Global.Scene_Load("GameOver")
+	Global.Scene_Load("res://Scenes/GameOver.tscn")

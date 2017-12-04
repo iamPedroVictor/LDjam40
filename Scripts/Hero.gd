@@ -84,6 +84,7 @@ func LoseExp(amount):
 func AttackAction(_target):
 	if(anim == null):
 		return
+	combatNode.DisableMenu()
 	anim.play("Attack")
 	target = _target
 

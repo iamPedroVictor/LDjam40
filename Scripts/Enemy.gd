@@ -16,6 +16,9 @@ var constitution = 0
 
 var combatNode 
 
+var damageBase = 0
+var defenseBase = 0
+
 var lastTurnPassed = false
 
 var enemyType
@@ -24,6 +27,8 @@ var anim
 var timeNode
 
 const spriteFolder = "res://Sprites/%s.png"
+
+const speaks = ["You like this %s?","You can not go by here.","The boss can not waste time with you.", "If it were not for meddlers like you, the boss would be able to give me a ration increase."]
 
 var SpriteNode
 
@@ -34,7 +39,7 @@ func _ready():
 	combatNode = get_tree().get_root().get_node("Combat")
 	anim = get_node("AnimationPlayer")
 	Hud = get_node("./HUDBar")
-	timeNode = get_parent().get_parent().get_node("Timer")
+	timeNode = get_parent().get_parent().get_node("Timer1")
 	GenerateAttributes()
 	SpriteNode = get_node("Sprite")
 	LoadSprite()
@@ -86,6 +91,13 @@ func EnemyTurn():
 		decisionAct = AttackHero()
 	if(decision > 8):
 		UseItem()
+	
+
+func UpStats(turnNumber):
+	if(turnNumber % 2 == 0):
+		defenseBase += 1
+		damageBase += 1
+	
 
 func PanelSpeak(text):
 	var panel = get_parent().get_parent().get_node("PanelMenuEnemy")
@@ -105,13 +117,13 @@ func PassTurn():
 func AttackHero():
 	var heros = get_tree().get_nodes_in_group("Hero")
 	var target = RandomNumber(0, heros.size())
-	PanelSpeak("Eu irei lhe atacar !")
+	PanelSpeak("I will attack!!!")
 	timeNode.set_wait_time(1.2)
 	timeNode.set_one_shot(true)
 	timeNode.start()
 	yield(timeNode,"timeout")
 	timeNode.stop()
-	var damage = 1
+	var damage = 1 + damageBase
 	if enemyType == Goblin:
 		damage += int(round(getSkillMod(dexterity) % 2))
 	elif enemyType == Orc:
@@ -119,7 +131,7 @@ func AttackHero():
 	elif enemyType == Mage_Orc:
 		damage += int(round(getSkillMod(intelligence)))
 	
-	var speak = "Sinta esse lindo golpe seu %s de merda" % heros[target].get_name()
+	var speak = GetSpeak(heros[target].heroName)
 	PanelSpeak(speak)
 	heros[target].TakeDamage(damage)
 	timeNode.set_wait_time(1.5)
@@ -127,17 +139,24 @@ func AttackHero():
 	yield(timeNode,"timeout")
 	PassTurn()
 
+func GetSpeak(name):
+	var stringSpeak = speaks[RandomNumber(0,speaks.size())]
+	var speak
+	if(stringSpeak.findn("%s") != -1):
+		speak = stringSpeak % name
+	else:
+		speak = stringSpeak
+	return speak
+
 func TakeDamage(amount):
-	var finalDamage = int(round(amount - (getSkillMod(constitution) * 0.8)))
+	var finalDamage = int(round(amount - (getSkillMod(constitution) * 0.5)) - defenseBase)
 	lifePoints -= finalDamage
-	print("Levei de dano final %s de %s" % [finalDamage,amount])
-	print("Tenho de vida agora: %s" % lifePoints)
-	print("-------------")
 	Hud.ChangeLifeBar(lifePoints)
 	if(lifePoints <= 0):
 		Die()
 
 func Die():
+	combatNode.EnemyDie()
 	self.hide()
 
 func RandomNumber(_min, _max):

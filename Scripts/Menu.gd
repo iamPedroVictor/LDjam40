@@ -15,6 +15,9 @@ func _ready():
 	menuPanel = get_node("MenuPanel")
 	AnimationLabel = get_node("MenuPanel/AnimationPlayer")
 	
+	menuPanel.show()
+	creditPanel.hide()
+	
 	if AnimationLabel == null:
 		pass
 	else:
@@ -28,4 +31,16 @@ func _on_ButtonPlay_pressed():
 
 
 func _on_ButtonCredits_pressed():
+	if(menuPanel.is_visible()):
+		menuPanel.hide()
+	if(!creditPanel.is_visible()):
+		creditPanel.show()
+	pass # replace with function body
+
+
+func _on_Button_pressed():
+	if(creditPanel.is_visible()):
+		creditPanel.hide()
+	if(!menuPanel.is_visible()):
+		menuPanel.show()
 	pass # replace with function body
